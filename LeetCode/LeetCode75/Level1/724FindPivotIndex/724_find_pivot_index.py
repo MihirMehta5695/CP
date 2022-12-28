@@ -3,16 +3,21 @@ from typing import List
 
 class Solution:
     def pivotIndex(self, nums: List[int]) -> int:
+        pivot_index = -1
         sum_left  = 0
         sum_right = sum(nums[1:])
-
-        for index in range(0,len(nums)-1):
-            num = nums[index]
+        if sum_left == sum_right:
+                pivot_index = 0
+                return pivot_index
+        for index in range(1,len(nums)):
+            print(index)
+            value=nums[index]
+            sum_left  += nums[index-1]
+            sum_right -= value
             if sum_left == sum_right:
+                pivot_index = index
                 return index
-            sum_left  += num
-            sum_right -= nums[index+1]
-        return -1
+        return pivot_index
 
 
 if __name__ == "__main__":
